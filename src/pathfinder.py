@@ -46,6 +46,9 @@ def pathfind(problem: "MazeProblem") -> Optional[list[str]]:
         targets_left = set()
     )
 
+    # >> [SC] Define your helper methods outside of the pathfind() function!
+
+    # >> [SC] Provide proper docstrings for ALL methods, including helpers you write (-0.25)
     def heuristic(problem: MazeProblem, node: "SearchTreeNode", targets_left: set[tuple[int, int]]) -> int:
         # Return a heuristic value based on remaining targets, their positions, and the estimated cost to shoot them considering visibility
         total_h_cost: int = 0
@@ -73,9 +76,13 @@ def pathfind(problem: "MazeProblem") -> Optional[list[str]]:
     while not open_set.empty(): # Main loop if the open_set isn't empty
         current_node: SearchTreeNode = open_set.get() # Gets lowest value by __lt__
         if(len(problem.get_initial_targets()) - len(current_node.targets_shot)) == 0: # Goal condition
+            # >> [SC] You have a lot of code here to recover the solution that should be instead
+            # in its own helper method (see CW3 solution) (-0.25)
             while current_node.parent is not None:
                 path.insert(0, current_node.action) # Insert at index 0
                 current_node = current_node.parent # Traces back to path of the solution
+            # >> [SC] Remove print statements before submission in the future; they will substantially
+            # slow your solution down! (-0.25)
             for x in path:
                 print(x)
             return path
@@ -111,3 +118,32 @@ def pathfind(problem: "MazeProblem") -> Optional[list[str]]:
                     print(" Cost = " + str(child_node.cost) + str(child_node.h_cost))
 
     return None # If we explore the whole frontier
+
+# ===================================================
+# >>> [SC] Summary
+# A great submission that shows strong command of
+# programming fundamentals, generally good style,
+# and a good grasp on the problem and supporting
+# theory of A*. Indeed, there is definitely
+# a lot to like in what you have above, but
+# I think you could have cleaned up your code a bit.
+# There are a few stray print statements, an
+# embeded helper method in the pathfind() function,
+# and missing docstrings! Also be sure not to remove 
+# the docstring for the class... Give yourself more 
+# time to clean future submissions and you'll be golden!
+# ---------------------------------------------------
+# >>> [SC] Style Checklist
+# [X] = Good, [~] = Mixed bag, [ ] = Needs improvement
+#
+# [X] Variables and helper methods named and used well
+# [X] Proper and consistent indentation and spacing
+# [~] Proper docstrings provided for ALL methods
+# [X] Logic is adequately simplified
+# [X] Code repetition is kept to a minimum
+# ---------------------------------------------------
+# Correctness:          100 / 100 (-2 / missed unit test)
+# Mypy Penalty:        -2 (-2 if mypy wasn't clean)
+# Style Penalty:       -0.75
+# Total:                97.25/ 100
+# ===================================================
