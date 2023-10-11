@@ -142,8 +142,8 @@ def pathfind(problem: "MazeProblem") -> Optional[list[str]]:
 # [X] Logic is adequately simplified
 # [X] Code repetition is kept to a minimum
 # ---------------------------------------------------
-# Correctness:          100 / 100 (-2 / missed unit test)
+# Correctness:          80 / 100 (-2 / missed unit test)
 # Mypy Penalty:        -2 (-2 if mypy wasn't clean)
 # Style Penalty:       -0.75
-# Total:                97.25/ 100
+# Total:                77.25/ 100
 # ===================================================
